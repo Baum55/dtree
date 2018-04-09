@@ -54,16 +54,16 @@ struct dtree_dev_t *dtree_byname(const char *name)
 	return curr;
 }
 
-struct dtree_dev_t *dtree_startbyname(const char *name)
+struct dtree_dev_t *dtree_byname_prefix(const char *name_prefix)
 {
 	struct dtree_dev_t *curr = NULL;
-	int string_length = strlen(name);
+	int string_length = strlen(name_prefix);
 
-	if(name == NULL || string_length == 0)
+	if(name_prefix == NULL || string_length == 0)
 		return NULL;
 
 	while((curr = dtree_next()) != NULL) {
-		if(!strncmp(name, curr->name, string_length))
+		if(!strncmp(name_prefix, curr->name, string_length))
 			break;
 
 		dtree_dev_free(curr);

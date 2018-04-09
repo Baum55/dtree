@@ -138,9 +138,9 @@ struct dtree_dev_t *dtree_next(void);
 struct dtree_dev_t *dtree_byname(const char *name);
 
 /**
- * Look up for device which starts with the name.
+ * Look up for device which starts with the name prefix.
  * Returns the first occurence of device with the given
- * name.
+ * name prefix.
  * The entry should be free'd by dtree_dev_free().
  *
  * Uses shared internal iterator.
@@ -149,7 +149,7 @@ struct dtree_dev_t *dtree_byname(const char *name);
  * Returns NULL when not found or on error.
  * On error sets error state.
  */
-struct dtree_dev_t *dtree_startbyname(const char *name);
+struct dtree_dev_t *dtree_byname_prefix(const char *name_prefix);
 
 /**
  * Looks up for device compatible with the given type.
