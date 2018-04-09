@@ -54,6 +54,24 @@ struct dtree_dev_t *dtree_byname(const char *name)
 	return curr;
 }
 
+struct dtree_dev_t *dtree_startbyname(const char *name)
+{
+	struct dtree_dev_t *curr = NULL;
+	int string_length = strlen(name);
+
+	if(name == NULL || string_length == 0)
+		return NULL;
+
+	while((curr = dtree_next()) != NULL) {
+		if(!strncmp(name, curr->name, string_length))
+			break;
+
+		dtree_dev_free(curr);
+	}
+
+	return curr;
+}
+
 static
 int is_compatible(const struct dtree_dev_t *dev, const char *compat)
 {
